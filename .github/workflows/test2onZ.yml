@@ -1,4 +1,4 @@
-name: Weekly Discord Message
+name: Weekly Discord Message 2
 
 on:
   schedule:
