@@ -1,4 +1,4 @@
 this should run automated messages for DC
 
-cheers
+cheers!
 Z
