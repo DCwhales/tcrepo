@@ -13,5 +13,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content":"@everyone Weekly meeting reminder! 🎉"}' \
+               -d '{"content":"@everyone Second Weekly meeting reminder! 🎉"}' \
                ${{ secrets.TEST_ATZSRVR_WH }}
