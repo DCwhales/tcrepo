@@ -2,7 +2,7 @@ name: Weekly Discord Message
 
 on:
   schedule:
-    - cron: '20 14 * * 5'  # Every Monday at 12:00 UTC
+    - cron: '25 13 * * 5'  # Every Friday at 13:25 UTC
   workflow_dispatch:  # Allows manual triggering too
 
 jobs:
