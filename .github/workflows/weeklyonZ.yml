@@ -2,7 +2,7 @@ name: Weekly Discord Message
 
 on:
   schedule:
-    - cron: '0 12 * * 1'  # Every Monday at 12:00 UTC
+    - cron: '20 14 * * 5'  # Every Monday at 12:00 UTC
   workflow_dispatch:  # Allows manual triggering too
 
 jobs:
@@ -14,4 +14,4 @@ jobs:
           curl -H "Content-Type: application/json" \
                -X POST \
                -d '{"content":"@everyone Weekly meeting reminder! 🎉"}' \
-               ${{ secrets.DISCORD_WEBHOOK_URL }}
+               ${{ secrets.TEST_ATZSRVR_WH }}
