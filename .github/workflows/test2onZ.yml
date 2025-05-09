@@ -1,0 +1,17 @@
+name: Weekly Discord Message
+
+on:
+  schedule:
+    - cron: '0 16 * * 5'  # Every Friday at 14:00 UTC
+  workflow_dispatch:  # Allows manual triggering too
+
+jobs:
+  post-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord message
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"content":"@everyone Weekly meeting reminder! 🎉"}' \
+               ${{ secrets.TEST_ATZSRVR_WH }}
