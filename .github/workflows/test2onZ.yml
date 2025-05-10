@@ -2,7 +2,7 @@ name: Weekly Discord Message 2
 
 on:
   schedule:
-    - cron: '0 18 * * 5'  # Every Friday at 14:00 UTC
+    - cron: '0 5 * * 3'  # Every Friday at 14:00 UTC
   workflow_dispatch:  # Allows manual triggering too
 
 jobs:
@@ -13,5 +13,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d '{"content":"@everyone Second Weekly meeting reminder! 🎉"}' \
+               -d '{"content":"@everyone tc soon"}' \
                ${{ secrets.TEST_ATZSRVR_WH }}
