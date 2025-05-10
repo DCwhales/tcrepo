@@ -1,0 +1,17 @@
+name: TC Asiti 4h Reminder
+
+on:
+  schedule:
+    - cron: '00 2 * * 3'  # Every Friday at 14:00 UTC
+  workflow_dispatch:  # Allows manual triggering too
+
+jobs:
+  post-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord message
+        run: |
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d '{"content":"@everyone TC at Asiti in 4h, please prepare and send ships before TC starts"}' \
+               ${{ secrets.TEST_ATZSRVR_WH }}
