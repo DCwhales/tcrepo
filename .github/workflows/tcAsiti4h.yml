@@ -14,4 +14,4 @@ jobs:
           curl -H "Content-Type: application/json" \
                -X POST \
                -d '{"content":"@everyone TC at Asiti in 4h, please prepare and send ships before TC starts"}' \
-               ${{ secrets.TEST_ATZSRVR_WH }}
+               ${{ secrets.TC_DC_WH }}
