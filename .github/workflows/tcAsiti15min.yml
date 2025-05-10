@@ -1,4 +1,4 @@
-name: TC Asiti 4h Reminder
+name: TC Asiti 15min Reminder
 
 on:
   schedule:
