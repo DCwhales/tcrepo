@@ -1,8 +1,8 @@
-name: Send Weekly Meeting Reminder with timestamp 
+name: Send Weekly Meeting Reminder 222
 
 on:
   schedule:
-    - cron: '0 13 * * 5'  # Runs every Friday at 13:00 UTC (adjust as needed)
+    - cron: '0 13 * * 5'  # Runs every Friday at 13:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -18,11 +18,11 @@ jobs:
           # Convert to Unix timestamp
           TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
 
-          # Escape double quotes inside JSON manually
-          MESSAGE="Weekly Online Meeting starts in 1 hour , Bring your favorite coffee <t:$TIMESTAMP> - <t:$TIMESTAMP:R>"
-          
-          # Send to Discord
+          # Prepare the message
+          MESSAGE="**Weekly Online Meeting** starts in 1 hour! Bring your favorite coffee!\\n<t:$TIMESTAMP> - <t:$TIMESTAMP:R>"
+
+          # Send the message to Discord
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "$(jq -nc --arg content "$MESSAGE" '{content: $content}')" \
+               -d "{\"content\":\"$MESSAGE\"}" \
                "$DISCORD_WEBHOOK"
