@@ -18,9 +18,9 @@ jobs:
           # Convert to Unix timestamp
           TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
 
-          # Use printf to safely escape message content
-          MESSAGE=$(printf "Weekly Online Meeting starts in 1 hour! Bring your favorite coffee <t:%s> - <t:%s:R>" "$TIMESTAMP" "$TIMESTAMP")
-
+          # Escape double quotes inside JSON manually
+          MESSAGE="Weekly Online Meeting starts in 1 hour! Bring your favorite coffee <t:$TIMESTAMP> - <t:$TIMESTAMP:R>"
+          
           # Send to Discord
           curl -H "Content-Type: application/json" \
                -X POST \
