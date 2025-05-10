@@ -2,7 +2,7 @@ name: Send Weekly Meeting Reminder 222
 
 on:
   schedule:
-    - cron: '0 13 * * 5'  # Runs every Friday at 13:00 UTC
+    - cron: '0 13 * * 5'  # Every Friday at 13:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -12,6 +12,7 @@ jobs:
       - name: Send Discord Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.TEST_ATZSRVR_WH }}
+        shell: bash  # Use bash explicitly
         run: |
           # Set your target meeting time — adjust as needed
           MEETING_TIME_UTC="2025-05-10 14:00:00"
@@ -19,9 +20,9 @@ jobs:
           TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
 
           # Prepare the message
-          MESSAGE="**Weekly Online Meeting** starts in 1 hour! Bring your favorite coffee!\\n<t:$TIMESTAMP> - <t:$TIMESTAMP:R>"
+          MESSAGE="**Weekly Online Meeting** starts in 1 hour! Bring your favorite coffee!\n<t:$TIMESTAMP> - <t:$TIMESTAMP:R>"
 
-          # Send the message to Discord
+          # Send to Discord
           curl -H "Content-Type: application/json" \
                -X POST \
                -d "{\"content\":\"$MESSAGE\"}" \
