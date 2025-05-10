@@ -12,18 +12,18 @@ jobs:
       - name: Send Discord Notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.TEST_ATZSRVR_WH }}
-        shell: bash  # Use bash explicitly
+        shell: bash
         run: |
           # Set your target meeting time — adjust as needed
           MEETING_TIME_UTC="2025-05-10 14:00:00"
           # Convert to Unix timestamp
           TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
 
-          # Prepare the message
-          MESSAGE="Weekly Online Meeting starts in 1 hour, Bring your favorite coffee <t:$TIMESTAMP> <t:$TIMESTAMP:R> "
-          
+          # Prepare the message (escaping double quotes inside JSON)
+          MESSAGE="Weekly Online Meeting starts in 1 hour, Bring your favorite coffee <t:${TIMESTAMP}> <t:${TIMESTAMP}:R>"
+
           # Send to Discord
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\":\"$MESSAGE\"}" \
+               -d "{\"content\":\"${MESSAGE}\"}" \
                "$DISCORD_WEBHOOK"
