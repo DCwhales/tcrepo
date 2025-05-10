@@ -1,5 +1,4 @@
-name: Send Weekly Meeting Reminder 222
-
+name: send message with timestamp
 on:
   schedule:
     - cron: '0 13 * * 5'  # Every Friday at 13:00 UTC
