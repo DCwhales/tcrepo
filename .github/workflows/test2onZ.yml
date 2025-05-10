@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Send Discord Notification
         env:
-          DISCORD_WEBHOOK: ${{ secrets.TEST_ZSRVR_WH }}
+          DISCORD_WEBHOOK: ${{ secrets.TEST_ATZSRVR_WH }}
         run: |
           # Set your target meeting time — adjust as needed
           MEETING_TIME_UTC="2025-05-10 14:00:00"
