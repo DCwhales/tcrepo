@@ -19,7 +19,7 @@ jobs:
           TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
           
           # Prepare the message with Discord time tags
-          MESSAGE="**Weekly Online Meeting** starts in 1 hour! Bring your favorite coffee!  <t:$TIMESTAMP> - <t:$TIMESTAMP:R>"
+          MESSAGE="Weekly Online Meeting starts in 1 hour! Bring your favorite coffee <t:$TIMESTAMP> - <t:$TIMESTAMP:R>"
 
           # Send to Discord
           curl -H "Content-Type: application/json" \
