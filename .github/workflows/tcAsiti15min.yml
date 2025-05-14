@@ -1,17 +1,32 @@
-name: TC Asiti 15min Reminder
-
+name: Asiti 1 day before
 on:
   schedule:
-    - cron: '45 5 * * 3'  # Every Friday at 14:00 UTC
-  workflow_dispatch:  # Allows manual triggering too
+    - cron: '0 6 * * 2'  # Every Wednsday at 06:00 UTC
+  workflow_dispatch:
 
 jobs:
-  post-message:
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Discord message
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.TC_DC_WH }}
+        shell: bash
         run: |
-          curl -H "Content-Type: application/json" \
-               -X POST \
-               -d '{"content":"@everyone TC at Asiti in 15 min, start sending ships."}' \
-               ${{ secrets.TC_DC_WH }}
+          # Get the next Friday's date (including today if it's Wednsday)
+          NEXT_TIME=$(date -u -d "next Wed" +%Y-%m-%d)
+
+          # Set meeting time at 06:00 UTC on that Wednsday
+          MEETING_TIME_UTC="${NEXT_TIME} 06:00:00"
+
+          # Convert to Unix timestamp
+          TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
+
+          # Create message
+          MESSAGE="**Asiti TC** Tommorow <t:${TIMESTAMP}> <t:${TIMESTAMP}:R>"
+
+          # Use jq to build JSON payload safely
+          PAYLOAD=$(jq -n --arg msg "$MESSAGE" '{content: $msg}')
+
+          # Send to Discord
+          curl -H "Content-Type: application/json" -X POST -d "$PAYLOAD" "$DISCORD_WEBHOOK"
