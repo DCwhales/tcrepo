@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Send Discord Notification
         env:
-          DISCORD_WEBHOOK: ${{ secrets.TEST_ATZSRVR_WH }}
+          DISCORD_WEBHOOK: ${{ secrets.TC_DC_WH }}
         shell: bash
         run: |
           # Get the next Friday's date (including today if it's Wednsday)
