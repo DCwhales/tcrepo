@@ -14,7 +14,8 @@ jobs:
         shell: bash
         run: |
           # Get the next Friday's date (including today if it's Wednsday)
-          NEXT_TIME=$(date -u -d "next Wed" +%Y-%m-%d)
+          # # NEXT_TIME=$(date -u -d "next Wed" +%Y-%m-%d)
+          NEXT_TIME=$(date -u +%Y-%m-%d)
 
           # Set meeting time at 06:00 UTC on that Wednsday
           MEETING_TIME_UTC="${NEXT_TIME} 06:00:00"
