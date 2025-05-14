@@ -1,7 +1,7 @@
 name: Asiti 3-4 Hours Before
 on:
   schedule:
-    - cron: '0 2 * * 3'  # Every Wednsday at 06:00 UTC
+    - cron: '0 0 * * 3'  # Every Wednsday at 00:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -13,11 +13,13 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.TC_DC_WH }}
         shell: bash
         run: |
-          # Get the next Friday's date (including today if it's Wednsday)
+          # # # Get the next Friday's date (including today if it's Wednsday)
           # # NEXT_TIME=$(date -u -d "next Wed" +%Y-%m-%d)
+
+          # Get Todays date (Wednsday)
           NEXT_TIME=$(date -u +%Y-%m-%d)
 
-          # Set meeting time at 06:00 UTC on that Wednsday
+          # Set TC time at 06:00 UTC on that Wednsday
           MEETING_TIME_UTC="${NEXT_TIME} 06:00:00"
 
           # Convert to Unix timestamp
