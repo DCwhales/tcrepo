@@ -20,7 +20,7 @@ jobs:
           NEXT_TIME=$(date -u +%Y-%m-%d)
 
           # Set TC time at 06:00 UTC on that Friday
-          MEETING_TIME_UTC="${NEXT_TIME} 06:00:00"
+          MEETING_TIME_UTC="${NEXT_TIME} 07:00:00"
 
           # Convert to Unix timestamp
           TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
