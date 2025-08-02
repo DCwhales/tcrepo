@@ -16,7 +16,7 @@ jobs:
           # Get the next Wednesday's date (including today if it's Wednesday)
           NEXT_TIME=$(date -u -d "next Wed" +%Y-%m-%d)
 
-          # Set meeting time at 06:00 UTC on that Friday
+          # Set meeting time at 06:00 UTC on that Wednesday
           MEETING_TIME_UTC="${NEXT_TIME} 11:00:00"
 
           # Convert to Unix timestamp
