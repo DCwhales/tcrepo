@@ -1,4 +1,4 @@
-name: Lenara 1 day before
+name: Lenara 4 hours before
 on:
   schedule:
     - cron: '0 7 * * 3'  # Every Wednesday at 07:00 UTC
