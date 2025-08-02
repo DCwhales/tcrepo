@@ -1,0 +1,32 @@
+name: Lenara 1 day before
+on:
+  schedule:
+    - cron: '0 11 * * 3'  # Every Wednesday at 01:00 UTC
+  workflow_dispatch:a
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.TC_DC_WH }}
+        shell: bash
+        run: |
+          # Get the next Friday's date (including today if it's Friday)
+          NEXT_TIME=$(date -u -d "next Fri" +%Y-%m-%d)
+
+          # Set meeting time at 06:00 UTC on that Friday
+          MEETING_TIME_UTC="${NEXT_TIME} 07:00:00"
+
+          # Convert to Unix timestamp
+          TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
+
+          # Create message
+          MESSAGE="**Kolava TC** Tomorrow <t:${TIMESTAMP}> <t:${TIMESTAMP}:R>. @everyone"
+
+          # Use jq to build JSON payload safely
+          PAYLOAD=$(jq -n --arg msg "$MESSAGE" '{content: $msg}')
+
+          # Send to Discord
+          curl -H "Content-Type: application/json" -X POST -d "$PAYLOAD" "$DISCORD_WEBHOOK"
