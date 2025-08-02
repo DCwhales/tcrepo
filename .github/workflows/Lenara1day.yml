@@ -1,7 +1,7 @@
 name: Lenara 1 day before
 on:
   schedule:
-    - cron: '0 11 * * 3'  # Every Wednesday at 01:00 UTC
+    - cron: '0 11 * * 3'  # Every Wednesday at 11:00 UTC
   workflow_dispatch:a
 
 jobs:
