@@ -13,8 +13,11 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.TC_DC_WH }}
         shell: bash
         run: |
-          # Get the next Wednesday's date (including today if it's Wednesday)
-          NEXT_TIME=$(date -u -d "next Wed" +%Y-%m-%d)
+          # # # Get the next Friday's date (including today if it's Wednsday)
+          # # NEXT_TIME=$(date -u -d "next Wed" +%Y-%m-%d)
+
+          # Get Todays date (Wednsday)
+          NEXT_TIME=$(date -u +%Y-%m-%d)
 
           # Set meeting time at 11:00 UTC on that Wednesday
           MEETING_TIME_UTC="${NEXT_TIME} 11:00:00"
