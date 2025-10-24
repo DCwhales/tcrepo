@@ -23,7 +23,7 @@ jobs:
           TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
 
           # Create message
-          MESSAGE="**Klefaski TC** Tomorrow <t:${TIMESTAMP}> <t:${TIMESTAMP}:R>. @everyone"
+          MESSAGE="**Klefaski TC** Tomorrow <t:${TIMESTAMP}> <t:${TIMESTAMP}:R>."
 
           # Use jq to build JSON payload safely
           PAYLOAD=$(jq -n --arg msg "$MESSAGE" '{content: $msg}')
