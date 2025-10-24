@@ -13,10 +13,10 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.TC_DC_WH }}
         shell: bash
         run: |
-          # Get the next Thursday's date (including today if it's Thursday)
-          NEXT_TIME=$(date -u -d "next Thu" +%Y-%m-%d)
+          # Get the next Friday's date (including today if it's Thursday)
+          NEXT_TIME=$(date -u -d "next Fri" +%Y-%m-%d)
 
-          # Set TC reminder time at 09:00 UTC+0 on that Thursday
+          # Set TC time at 09:00 UTC+0 on that Friday
           MEETING_TIME_UTC="${NEXT_TIME} 09:00:00"
 
           # Convert to Unix timestamp
