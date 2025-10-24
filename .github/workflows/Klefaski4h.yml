@@ -1,0 +1,35 @@
+name: Klefaski 4 hours before
+on:
+  schedule:
+    - cron: '0 5 * * 5'  # Every Friday at 05:00 UTC will notify the TC with 4 hours head-of-time
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.TC_DC_WH }}
+        shell: bash
+        run: |
+          # # # Get the next Friday's date (including today if it's Friday)
+          # # NEXT_TIME=$(date -u -d "next Fri" +%Y-%m-%d)
+
+          # Get Todays date (Friday)
+          NEXT_TIME=$(date -u +%Y-%m-%d)
+
+          # Set meeting time at 11:00 UTC on that Friday
+          MEETING_TIME_UTC="${NEXT_TIME} 09:00:00"
+
+          # Convert to Unix timestamp
+          TIMESTAMP=$(date -d "$MEETING_TIME_UTC" +%s)
+
+          # Create message
+          MESSAGE="**Klefaski TC** soon <t:${TIMESTAMP}> <t:${TIMESTAMP}:R>. prepare to send ships on time. @everyone"
+
+          # Use jq to build JSON payload safely
+          PAYLOAD=$(jq -n --arg msg "$MESSAGE" '{content: $msg}')
+
+          # Send to Discord
+          curl -H "Content-Type: application/json" -X POST -d "$PAYLOAD" "$DISCORD_WEBHOOK"
