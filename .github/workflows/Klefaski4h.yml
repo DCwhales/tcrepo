@@ -19,7 +19,7 @@ jobs:
           # Get Todays date (Friday)
           NEXT_TIME=$(date -u +%Y-%m-%d)
 
-          # Set meeting time at 11:00 UTC on that Friday
+          # Set TC time at 09:00 UTC+0 on that Friday
           MEETING_TIME_UTC="${NEXT_TIME} 09:00:00"
 
           # Convert to Unix timestamp
