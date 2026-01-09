@@ -1,5 +1,6 @@
 this should run automated messages for DC
 
 
-Cheers!!!! and marry xmas!
+Cheers!!!! 
+and happy new year!
 Z
