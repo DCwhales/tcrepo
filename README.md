@@ -2,6 +2,6 @@ this should run automated messages for DC
 
 
 Cheers!!!! 
-and all the best
+and all the best wishes
 
 Z 🤓
